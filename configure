@@ -191,5 +191,8 @@ sudo chmod +x /bin/rpi-wifi.sh
 # sudo systemctl enable rpi-wifi.service
 crontab -l | { cat; echo "@reboot /bin/rpi-wifi.sh"; } | crontab -
 
+# disable dhcpcd because we are working with /etc/network/interfaces
+sudo update-rc.d dhcpcd disable
+
 # Finish
 echo "Wifi configuration is finished! Please reboot your Raspberry Pi to apply changes..."
