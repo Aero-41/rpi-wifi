@@ -193,7 +193,10 @@ sudo chmod +x /bin/rpi-wifi.sh
 # EOF
 # sudo systemctl daemon-reload
 # sudo systemctl enable rpi-wifi.service
-crontab -l | { cat; echo "@reboot /bin/rpi-wifi.sh"; } | crontab -
+
+#Work without this line on Rpi 3 (Blutcher light). If ap0 does not start try to copy /bin/rpi-wifi.sh to /etc/init.d/
+#and to follow steps like this https://stackoverflow.com/questions/12973777/how-to-run-a-shell-script-at-startup
+#FIXME crontab -l | { cat; echo "@reboot /bin/rpi-wifi.sh"; } | crontab -
 
 # disable dhcpcd because we are working with /etc/network/interfaces
 sudo update-rc.d dhcpcd disable
